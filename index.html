@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Registration_numbers</title>
+</head>
+<link rel="stylesheet" href="./registration_number.css">
+<body>
+
+
+<div class = "b">
+<h2>Registration Number :</h2>
+</div>
+
+<div class = "c">
+<h2>
+    <input type="text" name="textbox" class= "inputBox" id= "enter"value= >
+
+</h2>
+</div>
+
+<div class="d">
+<h2>
+<button type="button" name= "adding" class= "addBtn" onclick="addItem()"> Add </button>
+<p id="l1"></p>
+</h2>
+</div>
+
+<label class="radio-inline">
+<h4>
+<span>
+<input type="radio" name="gender" class= "radioItem" id = "town1" value="CK">  Malmesbury
+</span>
+</label>
+
+<label class="radio-inline">
+<span>
+    <input type="radio" name="gender" class= "radioItem" id = "town2" value="CA"> Cape Town
+</span>
+</label>
+
+<label class="radio-inline">
+<span>
+    <input type="radio" name="gender" class= "radioItem" id ="town3" value="CJ"> Belville
+</span>
+</label>
+</h4>
+
+<div class="f">
+<h2>
+<button type="button" name= "showing" class= "showTown" onclick="filterRegTown()"> Show </button>
+<p id = "l2"></p>
+</h2>
+</div>
+<h2>
+<div class="empty">
+<ul  class = "regNum" style ="list-style: none" id="dynamic-list"></ul>
+</div>
+</h2>
+
+<script src="./registration_number.js" charset="utf-8"></script>
+<script src="./dom/registration_numbers-dom.js" charset="utf-8"></script>
+
+</body>
+
+
+</html>
