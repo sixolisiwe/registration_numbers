@@ -4,73 +4,58 @@ function factoryRegNumbers() {
     var filterResults = [];
 
     function addregForAll(towns) {
-        get = towns;
-        var name = towns.substring(0,2).toUpperCase() + towns.slice(2);
 
-        if (numbers[name] === undefined && numbers !== "") {
-            numbers[name] = 0;
-            numbers.push(name);
+        get = towns;
+        var name = towns.substring(0, 2).toUpperCase() + towns.slice(2);
+
+        if (!numbers.includes(name)) {
+            numbers.push(name)
+            return name;
         }
 
+        // var name = towns.substring(0, 2).toUpperCase() + towns.slice(2);
 
+        // if (numbers[name] === undefined && numbers !== "") {
+        //     numbers[name] = 0;
+        //     numbers.push(name);
+        // }
 
     }
-     
+
     function getList() {
         return numbers;
     }
-    function getOne() {
+    function getOne() {//to return per plate
+
         return get;
     }
 
-    function tostore() {
-        var to = Object.keys(numbers);
-        return to.length;
+
+
+    function filterTowns(townTag) {
+        filterResults = [];
+        return numbers.filter((curentReg) => {
+
+            if (curentReg.startsWith(townTag)) {
+                filterResults.push(curentReg)
+            }
+        })
     }
 
-    function checkMalmTown(numbers) {
-        var town = [];
-        if (numbers.startsWith('ck')) {
-            town.push(numbers)
-            
-        }
-    }
-
-    function getMalmtown() {
-    
-        numbers.filter(checkMalmTown);
-    }
-
-    function getfilterRes(){
+    function getfilterRes() {
         return filterResults;
     }
-
-    function filterTowns(townTag){ 
-        filterResults = [];
-     return  numbers.filter((curentReg)=>{ 
-              
-                if(curentReg.startsWith(townTag)){
-                    filterResults.push(curentReg)
-                }
-            
-            
-       }) 
-    }
-
-
-  
-    
-
+console.log(filterResults);
     return {
-        checkMalmTown,
+        // checkMalmTown,
         addregForAll,
-        getMalmtown,
+        // getMalmtown,
         getList,
         getOne,
-        tostore,
+        // tostore,
         filterTowns,
         getfilterRes
-       
+
     }
 
 }
