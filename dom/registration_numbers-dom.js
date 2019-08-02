@@ -3,35 +3,51 @@ var addBtnElement = document.querySelector(".addBtn");
 var radioItemElement = document.querySelectorAll(".radioItem");
 var showTownElement = document.querySelector(".showTown");
 var target = document.getElementById("dynamic-list");
-
-
-if (localStorage.getItem('numbers')) {
-    numbers = JSON.parse(localStorage.getItem('numbers'))
-  } else {
-    numbers = []
-  }
+var isValidReg = (/^([A-Z]{2}\s[0-9]{3}\s[0-9]{1})/gi);
+var enter = document.getElementById("enter");
+var errorMessage = document.querySelector(".error");
 
 let regNumb = factoryRegNumbers();
 
 
 
+function addError(ErroMsg) {
+
+    errorMessage.innerHTML = ErroMsg
+
+}
+
 function addItem() {
 
-    if (inputBoxElement.value != undefined && inputBoxElement.value.trim() != "") {
-        var enter = document.getElementById("enter");
-        regNumb.addregForAll(enter.value);//appending the value
 
-        let regPlate = regNumb.getList();// returns or appends the list of reg nums as per ff logic
-        document.getElementById("dynamic-list").innerHTML = ''// thereafter clears the screen
-        
-        for (let i = 0; i < regPlate.length; i++) {
-            createRegPlate(regPlate[i]); //works up here only to help with filtering for the show btn
+    if (inputBoxElement.value != undefined && inputBoxElement.value.trim() != "") {
+
+        if (isValidReg.test(enter.value)) {
+           
+            regNumb.addregForAll(enter.value);//appending the value
+            let regPlate = regNumb.getList();// returns or appends the list of reg nums as per ff logic
+            document.getElementById("dynamic-list").innerHTML = ''// thereafter clears the screen
+
+            for (let i = 0; i < regPlate.length; i++) {
+                createRegPlate(regPlate[i]); //works up here only to help with filtering for the show btn
+
+            }
+
+        }
+        else {
+
+            addError('A valid reg is 2 letters, space, 3 numbers, space and 1-9 numbers');
         }
 
+    } else {
 
+        addError('a valid reg is required!');
     }
 
 }
+
+
+
 
 
 function createRegPlate(regPlate) {
@@ -51,13 +67,12 @@ function filterRegTown() {
         var elem = radioItemElement[i];
         if (elem.checked) {
             console.log(elem.value);
-          
+
             regNumb.filterTowns(elem.value);//replacing param while checking town value entered
             let filteredResults = regNumb.getfilterRes();// returning reg nums for that town
-            for (let i = 0; i < filteredResults.length; i ++) {
+            for (let i = 0; i < filteredResults.length; i++) {
                 createRegPlate(filteredResults[i]);// assigning the for loop logic to second function
             }
-            
 
         }
     }
@@ -66,5 +81,6 @@ function filterRegTown() {
 
 window.addEventListener('DOMContentLoaded', (event) => {
     // console.log('DOM fully loaded and parsed');
-      
+
 });
+

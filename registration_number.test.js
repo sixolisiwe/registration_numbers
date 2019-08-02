@@ -46,7 +46,7 @@ describe("registration numbers", function () {
         regInstance.filterTowns("CA 3885");
         
 
-        assert.deepEqual([ 'CA 962', 'CA 3885' ], regInstance.getfilterRes());   
+        assert.deepEqual(['CA 3885' ], regInstance.getfilterRes());   
         
 
     });
@@ -79,13 +79,14 @@ it("should return the numbers that are for Malmesbury", function () {
     var regInstance = factoryRegNumbers();
     regInstance.addregForAll("CA 3885");
     regInstance.addregForAll("CA 962")
-    regInstance.addregForAll("CK 456");
     regInstance.addregForAll("CK 123");
-    regInstance.filterTowns("CK 456")
-    regInstance.filterTowns("CK 123");
+    regInstance.addregForAll("CK 456");
+    regInstance.filterTowns("CK 123" , "CK 456")
+    // regInstance.filterTowns("CK 123");
     
 
-    assert.deepEqual([ 'CK 123', 'CK 456' ], regInstance.getfilterRes());  
+    assert.deepEqual(['CK 123'], regInstance.getfilterRes());  
+    // assert.deepEqual([ 'CK 123'], regInstance.getfilterRes()); 
 
 
 });

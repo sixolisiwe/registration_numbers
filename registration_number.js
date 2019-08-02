@@ -4,13 +4,14 @@ function factoryRegNumbers() {
     var filterResults = [];
 
     function addregForAll(towns) {
-
+          
         get = towns;
-        var name = towns.substring(0, 2).toUpperCase() + towns.slice(2);
-
+        var name = towns.substring(0, 2).toUpperCase('') + towns.slice(2);
+        //  console.log(name);
+        //  var re = name.match(/^([A-Z]{2}\s[0-9]{3}\s[0-9]{3})$/gi)
         if (!numbers.includes(name)) {
             numbers.push(name)
-            return name;
+    
         }
 
         // var name = towns.substring(0, 2).toUpperCase() + towns.slice(2);
