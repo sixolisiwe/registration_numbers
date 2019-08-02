@@ -19,7 +19,7 @@ function addError(ErroMsg) {
 
 function addItem() {
 
-
+    errorMessage.innerHTML = ""
     if (inputBoxElement.value != undefined && inputBoxElement.value.trim() != "") {
 
         if (isValidReg.test(enter.value)) {
@@ -36,12 +36,12 @@ function addItem() {
         }
         else {
 
-            addError('A valid reg is 2 letters, space, 3 numbers, space and 1-9 numbers');
+            addError('A valid reg is a one-time string of 2 letters, space, 3 numbers, space and 1-9 numbers');
         }
 
     } else {
 
-        addError('a valid reg is required!');
+        addError('A valid reg is required!');
     }
 
 }
