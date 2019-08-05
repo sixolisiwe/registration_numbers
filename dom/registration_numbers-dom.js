@@ -13,13 +13,13 @@ let regNumb = factoryRegNumbers();
 
 function addError(ErroMsg) {
 
-    errorMessage.innerHTML = ErroMsg
+    errorMessage.innerHTML = ErroMsg;
 
 }
 
 function addItem() {
 
-    errorMessage.innerHTML = ""
+    errorMessage.innerHTML = "";
     if (inputBoxElement.value != undefined && inputBoxElement.value.trim() != "") {
 
         if (isValidReg.test(enter.value)) {
@@ -32,6 +32,7 @@ function addItem() {
                 createRegPlate(regPlate[i]); //works up here only to help with filtering for the show btn
 
             }
+            
 
         }
         else {
@@ -74,13 +75,23 @@ function filterRegTown() {
                 createRegPlate(filteredResults[i]);// assigning the for loop logic to second function
             }
 
+            if(elem.value === "All"){
+                let regsNumbers = regNumb.getList();
+                for(let i = 0; i < regsNumbers.length; i++) {
+                    let elemVal = regsNumbers[i];
+                    document.getElementById("dynamic-list").innerHTML += "<li>" + elemVal + "</li>"
+                }
+            }
+          
         }
-    }
+       
+    
 }
-
+}
 
 window.addEventListener('DOMContentLoaded', (event) => {
     // console.log('DOM fully loaded and parsed');
 
 });
+
 
