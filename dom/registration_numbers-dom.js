@@ -10,7 +10,6 @@ var errorMessage = document.querySelector(".error");
 let regNumb = factoryRegNumbers();
 
 
-
 function addError(ErroMsg) {
 
     errorMessage.innerHTML = ErroMsg;
@@ -23,7 +22,7 @@ function addItem() {
     if (inputBoxElement.value != undefined && inputBoxElement.value.trim() != "") {
 
         if (isValidReg.test(enter.value)) {
-           
+
             regNumb.addregForAll(enter.value);//appending the value
             let regPlate = regNumb.getList();// returns or appends the list of reg nums as per ff logic
             document.getElementById("dynamic-list").innerHTML = ''// thereafter clears the screen
@@ -32,7 +31,7 @@ function addItem() {
                 createRegPlate(regPlate[i]); //works up here only to help with filtering for the show btn
 
             }
-            
+
 
         }
         else {
@@ -44,21 +43,13 @@ function addItem() {
 
         addError('A valid reg is required!');
     }
-
 }
-
-
-
-
 
 function createRegPlate(regPlate) {
     var li = document.createElement("li");//new list for show button
     li.textContent = regPlate;
     target.appendChild(li);//creates and take style of my initial add button list
 }
-
-
-
 
 function filterRegTown() {
     document.getElementById("dynamic-list").innerHTML = '' //clears our list of regnum's upon show btn pressed
@@ -75,18 +66,16 @@ function filterRegTown() {
                 createRegPlate(filteredResults[i]);// assigning the for loop logic to second function
             }
 
-            if(elem.value === "All"){
+            if (elem.value === "All") {
                 let regsNumbers = regNumb.getList();
-                for(let i = 0; i < regsNumbers.length; i++) {
+                for (let i = 0; i < regsNumbers.length; i++) {
                     let elemVal = regsNumbers[i];
                     document.getElementById("dynamic-list").innerHTML += "<li>" + elemVal + "</li>"
                 }
             }
-          
         }
-       
-    
-}
+
+    }
 }
 
 window.addEventListener('DOMContentLoaded', (event) => {
