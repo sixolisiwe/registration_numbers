@@ -1,77 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Registration_numbers</title>
+    <link rel="stylesheet" href="../registration_numbers/registration_number.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+    <script type="text/x-template" class="userRegTemplate">
+        <ul>
+            {{#each regNumber}}
+            <li>{{this}}</li>
+            {{/each}}
+        </ul>
+    </script>
 </head>
-<link rel="stylesheet" href="../registration_numbers/registration_number.css">
+
+
 <body>
 
+    <div class="row">
+        <div class="col-6 left">
+            <div class="b">
+                <h2>Registration Number :</h2>
+            </div>
 
-<div class = "b">
-<h2>Registration Number :</h2>
-</div>
+            <div class="c">
+                <h2>
+                    <input type="text" name="textbox" class="inputBox" placeholder="Please enter a reg number"
+                        id="enter" value=>
 
-<div class = "c">
-<h2>
-    <input type="text" name="textbox" class= "inputBox" placeholder= "Please enter a reg number" id= "enter"value= >
+                </h2>
+            </div>
 
-</h2>
-</div>
+            <div class="d">
+                <h2>
+                    <button type="button" name="adding" class="addBtn" onclick="addItem()"> Add </button>
+                    <p id="l1"></p>
+                </h2>
+            </div>
 
-<div class="d">
-<h2>
-<button type="button" name= "adding" class= "addBtn" onclick="addItem()"> Add </button>
-<p id="l1"></p>
-</h2>
-</div>
+            <label class="radio-inline">
+                <h4>
+                    <span>
+                        <input type="radio" name="radioBtn" class="radioItem" id="town1" value="CK"> Malmesbury
+                    </span>
+            </label>
 
-<label class="radio-inline">
-<h4>
-<span>
-<input type="radio" name="radioBtn" class= "radioItem" id = "town1" value="CK">  Malmesbury
-</span>
-</label>
+            <label class="radio-inline">
+                <span>
+                    <input type="radio" name="radioBtn" class="radioItem" id="town2" value="CA"> Cape Town
+                </span>
+            </label>
 
-<label class="radio-inline">
-<span>
-    <input type="radio" name="radioBtn" class= "radioItem" id = "town2" value="CA"> Cape Town
-</span>
-</label>
+            <label class="radio-inline">
+                <span>
+                    <input type="radio" name="radioBtn" class="radioItem" id="town3" value="CJ"> Belville
+                </span>
+                <span>
+                    <input type="radio" name="radioBtn" class="radioItem" id="town3" value="All"> All
+                </span>
+            </label>
+            </h4>
+            <div class="a">
+                <div class="error">
 
-<label class="radio-inline">
-<span>
-    <input type="radio" name="radioBtn" class= "radioItem" id ="town3" value="CJ"> Belville
-</span>
-<span> 
-    <input type="radio" name="radioBtn" class= "radioItem" id ="town3" value="All"> All  
-</span>
-</label>
-</h4>
-<div class="a">
-    <div class="error">
-            
+                </div>
+
+                <div class="f">
+                    <h2>
+                        <button type="button" name="showing" class="showTown" onclick="filterRegTown()"> Show </button>
+                        <p id="l2"></p>
+                    </h2>
+                </div>
+                <h2>
+                    <div class="empty">
+                        <ul class="regNum" style="list-style: none" id="dynamic-list"></ul>
+                    </div>
+                </h2>
+            </div>
         </div>
 
-<div class="f">
-<h2>
-<button type="button" name= "showing" class= "showTown" onclick="filterRegTown()"> Show </button>
-<p id = "l2"></p>
-</h2>
-</div>
-<h2>
-<div class="empty">
-<ul  class = "regNum" style ="list-style: none" id="dynamic-list"></ul>
-</div>
-</h2>
-</div>
-<script src="./registration_number.js" charset="utf-8"></script>
-<script src="./dom/registration_numbers-dom.js" charset="utf-8"></script>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <div class="col-6 right">
+            <div class="b">
+                <h2>Registration Number :</h2>
+            </div>
+
+            <div class="c">
+                <h2>
+                    <input type="text" name="textboxTemp" class="inputBoxTemp" placeholder="Please enter a reg number"
+                        id="enterTemp" value=>
+
+                </h2>
+            </div>
+
+            <div class="d">
+                <h2>
+                    <button type="button" name="addingTemp" class="addBtnTemp" onclick="addingItemsTemp()"> Add </button>
+                    <p id="l1"></p>
+                </h2>
+            </div>
+
+            <label class="radio-inline">
+                <h4>
+                    <span>
+                        <input type="radio" name="radioBtnTemp" class="radioItemTemp" id="town1" value="CK"> Malmesbury
+                    </span>
+            </label>
+
+            <label class="radio-inline">
+                <span>
+                    <input type="radio" name="radioBtnTemp" class="radioItemTemp" id="town2" value="CA"> Cape Town
+                </span>
+            </label>
+
+            <label class="radio-inline">
+                <span>
+                    <input type="radio" name="radioBtnTemp" class="radioItemTemp" id="town3" value="CJ"> Belville
+                </span>
+                <span>
+                    <input type="radio" name="radioBtnTemp" class="radioItemTemp" id="town3" value="AllTemp"> All
+                </span>
+            </label>
+            </h4>
+            <div class="a">
+                <div class="errorTemp">
+
+                </div>
+
+                <div class="f">
+                    <h2>
+                        <button type="button" name="showingTemp" class="showTownTemp" onclick="filterRegTownTemp()"> Show </button>
+                        <p id="l2"></p>
+                    </h2>
+                </div>
+                <h2>
+                    <div class="emptyTemp">
+                        <ul class="regNumTemp" style="list-style: none" id="dynamic-listTemp"></ul>
+                    </div>
+                </h2>
+            </div>
+        </div>
+    </div>
 
 
 </body>
-
+<script src="./registration_number.js" charset="utf-8"></script>
+<script src="./dom/registration_numbers-dom.js" charset="utf-8"></script>
+<script src = "./reg_number-temp.js"charset="utf-8"></script>
 
 </html>

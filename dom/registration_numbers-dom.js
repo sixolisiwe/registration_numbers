@@ -63,7 +63,7 @@ function filterRegTown() {
             regNumb.filterTowns(elem.value);//replacing param while checking town value entered
             let filteredResults = regNumb.getfilterRes();// returning reg nums for that town
             for (let i = 0; i < filteredResults.length; i++) {
-                createRegPlate(filteredResults[i]);// assigning the for loop logic to second function
+                createRegPlate(filteredResults[i]);// assigning the for loop logic to second function and replacing param of function
             }
 
             if (elem.value === "All") {

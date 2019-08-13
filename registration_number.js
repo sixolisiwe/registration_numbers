@@ -33,6 +33,7 @@ function factoryRegNumbers() {
             if (curentReg.startsWith(townTag)) {
                 filterResults.push(curentReg)
             }
+            console.log(curentReg);
         })
     }
 
