@@ -26,11 +26,11 @@ function factoryRegNumbers(reg) {
                 }
             }
             else {
-                error = " wromg location!"
+                error = " wrong location!"
             }
         }
         else {
-            error = " invalid!"
+            error = " invalid entry!"
         }
     }
     function Duplicate() {
