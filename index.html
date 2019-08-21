@@ -40,7 +40,11 @@
                     <p id="l1"></p>
                 </h2>
             </div>
-
+            <h2>
+                <div class="e">
+                    <button type="button" name="clearT" class="clearTown"> clear </button>
+                </div>
+            </h2>
             <label class="radio-inline">
                 <h4>
                     <span>
@@ -67,6 +71,9 @@
                 <div class="error">
 
                 </div>
+                <div class="erro2">
+
+                </div>
 
                 <div class="f">
                     <h2>
@@ -74,6 +81,7 @@
                         <p id="l2"></p>
                     </h2>
                 </div>
+
                 <h2>
                     <div class="empty">
                         <ul class="regNum" style="list-style: none" id="dynamic-list"></ul>
@@ -82,17 +90,17 @@
             </div>
         </div>
 
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
+
+
+
+
+
         <div class="col-6 right">
             <div class="b">
                 <h2>Registration Number :</h2>
@@ -108,11 +116,17 @@
 
             <div class="d">
                 <h2>
-                    <button type="button" name="addingTemp" class="addBtnTemp" onclick="addingItemsTemp()"> Add </button>
+                    <button type="button" name="addingTemp" class="addBtnTemp" onclick="addingItemsTemp()"> Add
+                    </button>
                     <p id="l1"></p>
                 </h2>
             </div>
 
+            <h2>
+                <div class="e">
+                    <button type="button" name="clearTemp" class="clearTownTemp"> clear </button>
+                </div>
+            </h2>
             <label class="radio-inline">
                 <h4>
                     <span>
@@ -142,10 +156,15 @@
 
                 <div class="f">
                     <h2>
-                        <button type="button" name="showingTemp" class="showTownTemp" onclick="filterRegTownTemp()"> Show </button>
+                        <button type="button" name="showingTemp" class="showTownTemp" onclick="filterRegTownTemp()">
+                            Show </button>
                         <p id="l2"></p>
                     </h2>
                 </div>
+                <!-- <div class="clear">
+                    <button type="button" name="clearTemp" class="clearTownTemp" onclick="filterRegTownTemp()"> Show
+                    </button>
+                </div> -->
                 <h2>
                     <div class="emptyTemp">
                         <ul class="regNumTemp" style="list-style: none" id="dynamic-listTemp"></ul>
@@ -159,6 +178,6 @@
 </body>
 <script src="./registration_number.js" charset="utf-8"></script>
 <script src="./dom/registration_numbers-dom.js" charset="utf-8"></script>
-<script src = "./reg_number-temp.js"charset="utf-8"></script>
+<script src="./reg_number-temp.js" charset="utf-8"></script>
 
 </html>

@@ -3,53 +3,86 @@ var addBtnElement = document.querySelector(".addBtn");
 var radioItemElement = document.querySelectorAll(".radioItem");
 var showTownElement = document.querySelector(".showTown");
 var target = document.getElementById("dynamic-list");
-var isValidReg = (/^([A-Z]{2}\s[0-9]{3}\s[0-9]{1})/gi);
+var clearBtn = document.querySelector(".clearTown")
 var enter = document.getElementById("enter");
 var errorMessage = document.querySelector(".error");
+var errMsg = document.querySelector(".error2");
 
-let regNumb = factoryRegNumbers();
+var newStore = [];
+if (localStorage["town"]) {
+ var newStore = JSON.parse(localStorage.getItem("town"))
+
+    for (let i = 0; i < newStore.length; i++) {
+        let elemVal = newStore[i];
+        document.getElementById("dynamic-list").innerHTML += "<li>" + elemVal + "</li>"
+        
+        }
+    }
+    
+
+
+let regNumb = factoryRegNumbers(newStore);
+
 
 
 function addError(ErroMsg) {
-
+ 
     errorMessage.innerHTML = ErroMsg;
+    
+}
 
+function clearError() {
+	setTimeout(function(){
+		errorMessage.innerHTML = "";
+	}, 2000);
+	
+}
+
+function StorageClear(){
+    localStorage.clear();
+    location.reload();
 }
 
 function addItem() {
 
     errorMessage.innerHTML = "";
-    if (inputBoxElement.value != undefined && inputBoxElement.value.trim() != "") {
+ 
+                regNumb.addregForAll(enter.value); //appending the value
+                let regPlate = regNumb.getList();// returns or appends the list of reg nums as per ff logic
+                document.getElementById("dynamic-list").innerHTML = ''// thereafter clears the screen
+                for (let i = 0; i < regPlate.length; i++) {
+                    createRegPlate(regPlate[i]); //works up here only to help with filtering for the show btn
+                }
 
-        if (isValidReg.test(enter.value)) {
-
-            regNumb.addregForAll(enter.value);//appending the value
-            let regPlate = regNumb.getList();// returns or appends the list of reg nums as per ff logic
-            document.getElementById("dynamic-list").innerHTML = ''// thereafter clears the screen
-
-            for (let i = 0; i < regPlate.length; i++) {
-                createRegPlate(regPlate[i]); //works up here only to help with filtering for the show btn
-
-            }
+                inputBoxElement.value = '';
+                errorMessage.innerHTML = regNumb.Duplicate();
+            
+            
+  clearError();
 
 
-        }
-        else {
+    
 
-            addError('A valid reg is a one-time string of 2 letters, space, 3 numbers, space and 1-9 numbers');
-        }
-
-    } else {
-
-        addError('A valid reg is required!');
-    }
+    
+     
+    window.localStorage.setItem("town", JSON.stringify(regNumb.getList()))
 }
 
+
+
+
+
+
+
 function createRegPlate(regPlate) {
+   
     var li = document.createElement("li");//new list for show button
     li.textContent = regPlate;
     target.appendChild(li);//creates and take style of my initial add button list
+
+
 }
+
 
 function filterRegTown() {
     document.getElementById("dynamic-list").innerHTML = '' //clears our list of regnum's upon show btn pressed
@@ -67,16 +100,18 @@ function filterRegTown() {
             }
 
             if (elem.value === "All") {
-                let regsNumbers = regNumb.getList();
-                for (let i = 0; i < regsNumbers.length; i++) {
-                    let elemVal = regsNumbers[i];
+            
+                for (let i = 0; i < newStore.length; i++) {
+                    let elemVal = newStore[i];
                     document.getElementById("dynamic-list").innerHTML += "<li>" + elemVal + "</li>"
                 }
             }
         }
-
+     
     }
 }
+
+clearBtn.addEventListener('click', StorageClear)
 
 window.addEventListener('DOMContentLoaded', (event) => {
     // console.log('DOM fully loaded and parsed');

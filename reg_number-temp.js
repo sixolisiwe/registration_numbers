@@ -3,9 +3,9 @@ var addBtnTempElement = document.querySelector(".addBtnTemp");
 var radioItemTempElement = document.querySelectorAll(".radioItemTemp");
 var showTownTempElement = document.querySelector(".showTownTemp");
 var targetTemp = document.getElementById("dynamic-listTemp");
-var isValidRegTemp = (/^([A-Z]{2}\s[0-9]{3}\s[0-9]{1})/gi);
 var enterTemp = document.getElementById("enterTemp");
 var errorMessageTemp = document.querySelector(".errorTemp");
+var clearBtnTemp = document.querySelector(".clearTownTemp");
 
 
 
@@ -13,39 +13,62 @@ var templateSource3 = document.querySelector(".userRegTemplate").innerHTML
 var userRegTemplate3 = Handlebars.compile(templateSource3);
 var myData3 = document.querySelector(".regNumTemp");
 
-let TownRegNumbTemp = factoryRegNumbers();
+
+let TownRegNumbTemp = factoryRegNumbers(newStoreTemp);
+
+var newStoreTemp = [];
+if (localStorage["townTemp"]) {
+    var newStoreTemp = JSON.parse(localStorage.getItem("townTemp"))
+
+    for (let i = 0; i < newStoreTemp.length; i++) {
+        let elemValTemp = newStoreTemp[i];
+        document.getElementById("dynamic-listTemp").innerHTML += "<li>" + elemValTemp + "</li>"
+        
+        }
+}
 
 
-function addErrorTemp(ErroMsg) {
 
-    errorMessageTemp.innerHTML = ErroMsg;
+function addErrorTemp(ErroMsgTemp) {
+
+    errorMessageTemp.innerHTML = ErroMsgTemp;
+
 
 }
 
+function clearErrorTemp() {
+    setTimeout(function () {
+        errorMessageTemp.innerHTML = "";
+    }, 2000);
+
+}
+function StorageClearTemp() {
+    localStorage.clear();
+    location.reload();
+}
+
+
 function addingItemsTemp() {
 
+
     errorMessageTemp.innerHTML = "";
-    if (inputBoxTempElement.value != undefined && inputBoxTempElement.value.trim() != "") {
-        if (isValidRegTemp.test(enterTemp.value)) {
-            TownRegNumbTemp.addregForAll(inputBoxTempElement.value);//appending the value
-            let regN = TownRegNumbTemp.getList();
-            document.getElementById("dynamic-listTemp").innerHTML = '';
 
-            (CreatePlateTemp(regN));
-            console.log(regN);
+    TownRegNumbTemp.addregForAll(inputBoxTempElement.value);//appending the value
+    let regN = TownRegNumbTemp.getList();
+    document.getElementById("dynamic-listTemp").innerHTML = '';
 
-        }
-        else {
+    (CreatePlateTemp(regN));
 
-            addErrorTemp('A valid reg is a one-time string of 2 letters, space, 3 numbers, space and 1-9 numbers');
-        }
-    } else {
+    inputBoxTempElement.value = '';
+    errorMessageTemp.innerHTML = TownRegNumbTemp.Duplicate();
 
-        addErrorTemp('A valid reg is required!');
-    }
-    }
-    
 
+    clearErrorTemp();
+
+
+
+    window.localStorage.setItem("townTemp", JSON.stringify(TownRegNumbTemp.getList()))
+}
 
 
 
@@ -62,18 +85,18 @@ function filterRegTownTemp() {
     document.getElementById("dynamic-listTemp").innerHTML = '' //clears our list of regnum's upon show btn pressed
     var townTag = document.querySelector("input[name = 'radioBtnTemp']:checked");
 
-        TownRegNumbTemp.filterTowns(townTag.value);
-        let filteredResultsTemp = TownRegNumbTemp.getfilterRes();// returning reg nums for that town
-        console.log(filteredResultsTemp, 'here');
-        CreatePlateTemp(filteredResultsTemp);
-    
-        
-        if (townTag.value === "AllTemp") {
-            let regsNumbersTemp = TownRegNumbTemp.getList();
-            CreatePlateTemp(regsNumbersTemp);
-            console.log(regsNumbersTemp);
-            
+    TownRegNumbTemp.filterTowns(townTag.value);
+    let filteredResultsTemp = TownRegNumbTemp.getfilterRes();// returning reg nums for that town
+    console.log(filteredResultsTemp, 'here');
+    CreatePlateTemp(filteredResultsTemp);
 
-        
+
+    if (townTag.value === "AllTemp") {
+        let regsNumbersTemp = TownRegNumbTemp.getList();
+        CreatePlateTemp(regsNumbersTemp);
+
+
     }
 }
+clearBtnTemp.addEventListener('click', StorageClearTemp)
+

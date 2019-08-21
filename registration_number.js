@@ -1,21 +1,45 @@
-function factoryRegNumbers() {
-    var numbers = [];
+function factoryRegNumbers(reg) {
+    var numbers = reg || [];
     var get;
     var filterResults = [];
+    var error = ""
+    var isValidReg = (/[!@#$%^&*(),.'?":+`?~{}|<>]/gi);
 
     function addregForAll(towns) {
 
         get = towns;
+
         var name = towns.substring(0, 2).toUpperCase('') + towns.slice(2);
+        var regEx = isValidReg.test(name)
+        if (regEx === false && name.length > 0 && name.length <= 10) {
+        if (name.startsWith('CA ') || name.startsWith('CJ ') || name.startsWith('CK ')) {
 
-        if (!numbers.includes(name)) {
-            numbers.push(name)
+            
 
+                if (!numbers.includes(name)) {
+                    numbers.push(name)
+                    return true;
+                }
+                else {
+
+                    error = " Duplicate!"
+                }
+            }
+            else {
+                error = " wromg location!"
+            }
         }
-
+        else {
+            error = " invalid!"
+        }
+    }
+    function Duplicate() {
+        return error;
     }
 
+
     function getList() {
+
         return numbers;
     }
 
@@ -45,7 +69,8 @@ function factoryRegNumbers() {
         getList,
         getOne,
         filterTowns,
-        getfilterRes
+        getfilterRes,
+        Duplicate
 
     }
 
