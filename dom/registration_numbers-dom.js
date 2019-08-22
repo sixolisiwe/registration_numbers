@@ -10,15 +10,15 @@ var errMsg = document.querySelector(".error2");
 
 var newStore = [];
 if (localStorage["town"]) {
- var newStore = JSON.parse(localStorage.getItem("town"))
+    var newStore = JSON.parse(localStorage.getItem("town"))
 
     for (let i = 0; i < newStore.length; i++) {
         let elemVal = newStore[i];
         document.getElementById("dynamic-list").innerHTML += "<li>" + elemVal + "</li>"
-        
-        }
+
     }
-    
+}
+
 
 
 let regNumb = factoryRegNumbers(newStore);
@@ -26,56 +26,53 @@ let regNumb = factoryRegNumbers(newStore);
 
 
 function addError(ErroMsg) {
- 
+
     errorMessage.innerHTML = ErroMsg;
-    
+
 }
 
 function clearError() {
-	setTimeout(function(){
-		errorMessage.innerHTML = "";
-	}, 2000);
-	
+    setTimeout(function () {
+        errorMessage.innerHTML = "";
+    }, 2000);
+
 }
 
-function StorageClear(){
+function StorageClear() {
     localStorage.clear();
     location.reload();
 }
 
 function addItem() {
 
-    errorMessage.innerHTML = "";
- 
-                regNumb.addregForAll(enter.value); //appending the value
-                let regPlate = regNumb.getList();// returns or appends the list of reg nums as per ff logic
-                document.getElementById("dynamic-list").innerHTML = ''// thereafter clears the screen
-                for (let i = 0; i < regPlate.length; i++) {
-                    createRegPlate(regPlate[i]); //works up here only to help with filtering for the show btn
-                }
-
-                inputBoxElement.value = '';
-                errorMessage.innerHTML = regNumb.Duplicate();
-            
-            
-  clearError();
 
 
-    
 
-    
-     
+    if (regNumb.addregForAll(enter.value)) { //appending the value
+        inputBoxElement.value = '';
+        errorMessage.innerHTML = "";
+        let regPlate = regNumb.getList();// returns or appends the list of reg nums as per ff logic
+        document.getElementById("dynamic-list").innerHTML = ''// thereafter clears the screen
+        for (let i = 0; i < regPlate.length; i++) {
+            createRegPlate(regPlate[i]); //works up here only to help with filtering for the show btn
+        }
+
+
+
+    } else {
+        errorMessage.innerHTML = regNumb.Duplicate();
+
+        clearError();
+    }
+
+
     window.localStorage.setItem("town", JSON.stringify(regNumb.getList()))
 }
 
 
 
-
-
-
-
 function createRegPlate(regPlate) {
-   
+
     var li = document.createElement("li");//new list for show button
     li.textContent = regPlate;
     target.appendChild(li);//creates and take style of my initial add button list
@@ -100,14 +97,14 @@ function filterRegTown() {
             }
 
             if (elem.value === "All") {
-            
+
                 for (let i = 0; i < newStore.length; i++) {
                     let elemVal = newStore[i];
                     document.getElementById("dynamic-list").innerHTML += "<li>" + elemVal + "</li>"
                 }
             }
         }
-     
+
     }
 }
 

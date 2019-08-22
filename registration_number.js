@@ -12,9 +12,8 @@ function factoryRegNumbers(reg) {
         var name = towns.substring(0, 2).toUpperCase('') + towns.slice(2);
         var regEx = isValidReg.test(name)
         if (regEx === false && name.length > 0 && name.length <= 10) {
-        if (name.startsWith('CA ') || name.startsWith('CJ ') || name.startsWith('CK ')) {
+        if (name.startsWith('CA ') || name.startsWith('CJ ') || name.startsWith('CK ')){
 
-            
 
                 if (!numbers.includes(name)) {
                     numbers.push(name)

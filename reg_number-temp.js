@@ -28,7 +28,6 @@ if (localStorage["townTemp"]) {
 }
 
 
-
 function addErrorTemp(ErroMsgTemp) {
 
     errorMessageTemp.innerHTML = ErroMsgTemp;
@@ -50,20 +49,22 @@ function StorageClearTemp() {
 
 function addingItemsTemp() {
 
+    
+    if(TownRegNumbTemp.addregForAll(inputBoxTempElement.value)){//appending the value
+        inputBoxTempElement.value = '';
+        errorMessageTemp.innerHTML = "";
 
-    errorMessageTemp.innerHTML = "";
-
-    TownRegNumbTemp.addregForAll(inputBoxTempElement.value);//appending the value
     let regN = TownRegNumbTemp.getList();
     document.getElementById("dynamic-listTemp").innerHTML = '';
 
     (CreatePlateTemp(regN));
 
-    inputBoxTempElement.value = '';
-    errorMessageTemp.innerHTML = TownRegNumbTemp.Duplicate();
+    
+    }else {
+        errorMessageTemp.innerHTML = TownRegNumbTemp.Duplicate();
 
-
-    clearErrorTemp();
+        clearErrorTemp();
+    }
 
 
 
