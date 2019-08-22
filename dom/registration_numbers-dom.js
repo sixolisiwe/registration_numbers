@@ -20,7 +20,6 @@ if (localStorage["town"]) {
 }
 
 
-
 let regNumb = factoryRegNumbers(newStore);
 
 

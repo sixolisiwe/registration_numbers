@@ -105,4 +105,43 @@ it("should return the numbers that are for Belville", function () {
 
 });
 
+it("should return Duplicate error message when the same number is entered twice", function () {
+    var regInstance = factoryRegNumbers();
+    regInstance.addregForAll("CA 3885");
+    regInstance.addregForAll("CA 3885")
+    
+    
+
+    assert.deepEqual(' Duplicate!', regInstance.Duplicate()); 
 })
+
+it("should return wrong location error message if reg number format is wrong", function () {
+    var regInstance = factoryRegNumbers();
+    regInstance.addregForAll("csgfh");
+   
+    
+    
+
+    assert.deepEqual(' wrong location!', regInstance.Duplicate()); 
+})
+
+it("should return invalid error message when the length has been exceeded", function () {
+    var regInstance = factoryRegNumbers();
+    regInstance.addregForAll("ck 8899689562");
+   
+    
+    
+
+    assert.deepEqual(' invalid entry!', regInstance.Duplicate()); 
+})
+
+it("should return invalid error message when there is nothing passed in the textbox", function () {
+    var regInstance = factoryRegNumbers();
+    regInstance.addregForAll("");
+   
+    
+    
+
+    assert.deepEqual(' invalid entry!', regInstance.Duplicate()); 
+})
+});
